@@ -1,9 +1,8 @@
 package com.example.internetconnectionbroadcast
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.internetconnectionbroadcast.databinding.ActivityMainBinding
 
 
@@ -23,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         cld.observe(this) { isConnected ->
             if (isConnected) {
                 binding.connected.visibility = View.VISIBLE
+                binding.connected.postDelayed({ binding.connected.visibility = View.INVISIBLE }, 3000)
                 binding.notConnected.visibility = View.GONE
             } else {
                 binding.connected.visibility = View.GONE
+                binding.notConnected.postDelayed({ binding.notConnected.visibility = View.INVISIBLE }, 3000)
                 binding.notConnected.visibility = View.VISIBLE
             }
         }
